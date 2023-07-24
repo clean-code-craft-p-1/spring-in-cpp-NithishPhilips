@@ -1,3 +1,4 @@
+
 #include "stats.h"
 #include <math.h>
 #include <iostream>
@@ -10,6 +11,9 @@ Statistics::Stats Statistics::ComputeStatistics(const std::vector<double>& vect)
 
 	if (vect.size() == 0)
 	{
+		stat.average = NAN;
+		stat.max = NAN;
+		stat.min = NAN;
 		return stat;
 	}
 	else
