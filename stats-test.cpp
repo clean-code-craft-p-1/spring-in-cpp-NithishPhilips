@@ -14,9 +14,9 @@ TEST(Statistics, AverageNaNForEmpty) {
 	auto computedStats = Statistics::ComputeStatistics({});
 	//All fields of computedStats (average, max, min) must be
 	//NAN (not-a-number), as defined in math.h
-	ASSERT_EQ(isnan(computedStats.average), isnan(NAN));
-	ASSERT_EQ(isnan(computedStats.max), isnan(NAN));
-	ASSERT_EQ(isnan(computedStats.min), isnan(NAN));
+	ASSERT_EQ(std::isnan(computedStats.average), std::isnan(NAN));
+	ASSERT_EQ(std::isnan(computedStats.max), std::isnan(NAN));
+	ASSERT_EQ(std::isnan(computedStats.min), std::isnan(NAN));
 	//Design the REQUIRE statement here.
 	//Use http://www.cplusplus.com/reference/cmath/isnan/
 }
