@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "stats.h"
 #include <math.h>
 #include <iostream>
@@ -33,6 +34,11 @@ void EmailAlert::Alert()
 }
 
 void LEDAlert::Alert()
+{
+
+}
+
+StatsAlerter::StatsAlerter(const float f, std::vector<IAlerter*> v)
 {
 
 }
