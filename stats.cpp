@@ -1,11 +1,10 @@
-
 #include "stats.h"
 #include <math.h>
 #include <iostream>
 #include <algorithm>
 
 Statistics::Stats Statistics::ComputeStatistics(const std::vector<double>& vect) {
-    //Implement statistics here
+	//Implement statistics here
 
 	Stats stat;
 
@@ -22,10 +21,10 @@ Statistics::Stats Statistics::ComputeStatistics(const std::vector<double>& vect)
 		stat.min = *min_element(vect.begin(), vect.end());
 
 		double sum = 0.0;
-		for (const float &i : vect) {
+		for (const float& i : vect) {
 			sum += (double)i;
 		}
-		stat.average = (float) sum / vect.size();
+		stat.average = (float)sum / vect.size();
 	}
 
 	return stat;
@@ -33,32 +32,34 @@ Statistics::Stats Statistics::ComputeStatistics(const std::vector<double>& vect)
 
 void EmailAlert::Alert()
 {
-	
+	emailSent = true;
 }
 
 void LEDAlert::Alert()
 {
-
+	ledGlows = true;
 }
 
-StatsAlerter::StatsAlerter(const float f, std::vector<IAlerter*> v)
+StatsAlerter::StatsAlerter(const float maxTreshold, std::vector<IAlerter*> alert)
 {
+	this->maxThreshold = maxThreshold;
 
+	for (unsigned int i = 0; i < alert.size(); i++)
+	{
+		this->alert.push_back(alert[i]);
+	}
 }
 
 void StatsAlerter::checkAndAlert(const std::vector<double>& vec)
 {
-	EmailAlert email;
-	LEDAlert led;
-
 	for (double a : vec)
 	{
-		if (a > 10.8)
+		if (a > maxThreshold)
 		{
-			email.emailSent = true;
-			led.ledGlows = true;
+			for (unsigned int i = 0; i < alert.size(); i++)
+			{
+				alert[i]->Alert();
+			}
 		}
 	}
 }
-
-

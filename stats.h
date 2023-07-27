@@ -1,6 +1,7 @@
 #include <vector>
 
 class IAlerter {
+public:
 	virtual void Alert() = 0;
 };
 
@@ -19,12 +20,14 @@ public:
 class StatsAlerter {
 public:
 	StatsAlerter(const float, std::vector<IAlerter*>);
-
 	void checkAndAlert(const std::vector<double>&);
+private:
+	float maxThreshold;
+	std::vector<IAlerter*> alert;
 };
 
 namespace Statistics {
-    // define the Stats structure here. See the tests to infer its properties
+	// define the Stats structure here. See the tests to infer its properties
 
 	struct Stats {
 	public:
@@ -34,9 +37,6 @@ namespace Statistics {
 
 	};
 
-    Stats ComputeStatistics(const std::vector<double>& );
+	Stats ComputeStatistics(const std::vector<double>&);
 
 }
-
-
-
